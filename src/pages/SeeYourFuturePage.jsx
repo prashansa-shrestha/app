@@ -6,7 +6,7 @@ function SeeYourFuturePage(){
     const display_text="See your future";
     const timeline_options=["6 month","1 year","2 year"]
     return(
-        <div>
+        <div className="page-container">
             <HeaderText text_detail={display_text}/>
             <TimelinePicker options={timeline_options}/>
             <NextButton/>

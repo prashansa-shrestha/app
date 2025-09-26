@@ -18,7 +18,7 @@ function App() {
         <Route path='/focus-on' element={<FocusOnPage/>}/>
         <Route path='/see-your-future' element={<SeeYourFuturePage/>}/>
         <Route path='/result-loading-page1' element={<ResultLoadingPage1/>}/>
-        <Route path='/result-loading-page2' element={<ResultLoadingPage2/>}/>
+        <Route path='/result-loading-page2' element={<ResultLoadingPage2 data_labels={["Event A","Event B","Event C"]}/>}/>
       </Routes>
     </main>
   )

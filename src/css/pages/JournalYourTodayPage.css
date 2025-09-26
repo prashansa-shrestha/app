@@ -1,0 +1,19 @@
+/* JournalYourTodayPage.css */
+
+.page-container {
+  min-height: 100vh;
+  width: 100%;
+  background: #F5EBE0;
+
+  /* vertical layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* spacing between children */
+  gap: 80px;
+
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}

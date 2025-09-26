@@ -40,7 +40,7 @@ function FileUpload() {
 
   async function onFileSelect(fileList) {
     if (!fileList || fileList.length === 0) {
-      setUploadStatus("No files selected");
+      setUploadStatus("no files selected :(");
       return;
     }
 
@@ -88,8 +88,8 @@ function FileUpload() {
         {isUploading
           ? "Uploading..."
           : isDragOver
-          ? "Drop files here!"
-          : "Upload your journal"}
+          ? "drop files here!<3"
+          : "upload your journal"}
       </p>
 
       {/* Upload Icon */}

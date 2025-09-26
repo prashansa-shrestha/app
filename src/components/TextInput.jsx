@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../css/components/TextInput.css'
 function TextInput({value, placeholder, onChange}){
     return <input 
     type="text"

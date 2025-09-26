@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from "react";
+import '../css/components/TimelinePicker.css'
 
 function TimelinePicker({options,selectedOption,onChange}){
     const containerRef=useRef(null);
     const itemHeight=40;
     const visibleCount=5;
 
-    // updates which option has been selected 
     function handleScroll(){
         const scrollTop=containerRef.current.scrollTop;
         const index=Math.round(scrollTop/itemHeight);
         const newOption=options[index];
         if (newOption && newOption!==selectedOption){
+            console.log(newOption)
             onChange(newOption);
         }
     }
 
-    //updates the element when selected option or the option change 
     useEffect(()=>{
         const index=options.indexOf(selectedOption)
         if (index>=0 && containerRef.current){
@@ -27,28 +27,21 @@ function TimelinePicker({options,selectedOption,onChange}){
     },[selectedOption,options]);
 
     return(
-    <div ref={containerRef} onScroll={handleScroll}>
-        
-        {/* scrollable region starts */}
+        <div className="timeline-picker" ref={containerRef} onScroll={handleScroll}>
+            {/* upper spacing */}
+            <div style={{height:`${(visibleCount-1)/2*itemHeight}px`}}/>
+            
+            {options.map((opt)=>(
+                <div key={opt}>{opt}</div>
+            ))}
 
-        {/* upper space management */}
-        <div style={{height:`${(visibleCount-1)/2*itemHeight}px`}}/>
+            {/* lower spacing */}
+            <div style={{height:`${(visibleCount-1)/2*itemHeight}px`}}/>
 
-        {options.map((opt)=>(
-            <div key={opt}>
-                {opt}
-            </div>
-        ))}
-        
-        {/*lower space management */}
-        <div style={{height:`${(visibleCount-1)/2*itemHeight}px`}}/>
-
-        {/* css le eslai center ma rakhdinxa */}
-        <div className="highlight-band"/>
-
-    </div>
-);
-
+            {/* highlight band overlay */}
+            <div className="highlight-band"/>
+        </div>
+    );
 }
 
 export default TimelinePicker;

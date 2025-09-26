@@ -1,0 +1,52 @@
+.timeline-picker {
+  position: relative; /* parent context for absolute children */
+  width: 200px;
+  height: 200px; /* visibleCount * itemHeight */
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.timeline-picker::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline-picker div {
+  height: 40px; /* same as itemHeight */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(112, 93, 86, 0.8);
+  transition: background 0.2s ease, color 0.2s ease;
+  opacity: 0.6;
+}
+
+/* Highlight band is locked inside the picker */
+.highlight-band {
+  position: fixed;             /* fixed relative to viewport */
+  top: 50%;                    /* center vertically on page */
+  left: 50%;                   /* center horizontally on page */
+  transform: translate(-50%, -50%); /* align perfectly center */
+  width: 200px;                /* same width as timeline-picker */
+  height: 40px;                /* same as one row */
+  background: rgba(112, 93, 86, 0.3); /* darker background */
+  /* border-top: 3px solid #705D56;
+  border-bottom: 3px solid #705D56;
+  border-left: 3px solid #705D56;
+  border-right: 3px solid #705D56; */
+  pointer-events: none;        /* don’t block interactions */
+  z-index: 10;                 /* sits above items */
+}
+
+
+/* Selected item */
+.timeline-picker .selected {
+  position: relative;
+  z-index: 20; /* text sits above band */
+  color: #705D56;
+  font-weight: 600;
+  opacity: 1;
+}

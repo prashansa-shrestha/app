@@ -1,0 +1,40 @@
+/* TextInput.css */
+
+.text-input {
+  width: 736px;
+  height: 56px;
+
+  /* Remove box border, keep underline only */
+  border: none;
+  border-bottom: 5px solid #705D56;
+  background: transparent;
+
+  /* Text styling */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 33.33px;
+  line-height: 40px;
+  color: rgba(112, 93, 86, 0.9);
+
+  /* Layout */
+  padding: 8px 0;
+  box-sizing: border-box;
+
+  /* Center text & placeholder */
+  text-align: center;
+
+  /* No outline on focus */
+  outline: none;
+}
+
+/* Placeholder styling */
+.text-input::placeholder {
+  color: rgba(112, 93, 86, 0.58);
+  text-align: center;
+}
+
+/* Focus state: darker underline */
+.text-input:focus {
+  border-bottom-color: #574640;
+}

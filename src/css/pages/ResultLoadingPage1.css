@@ -1,0 +1,14 @@
+/* FileUploadPage.css */
+
+.result-loading-page1 {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* stack from top */
+  background: #F5EBE0;
+  padding: 6vh 2vw;              /* more breathing space */
+  box-sizing: border-box;
+}
+/* 

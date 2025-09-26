@@ -1,0 +1,67 @@
+/* Page container */
+.result-loading-page2 {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background: #F5EBE0;
+  box-sizing: border-box;
+}
+
+/* Left side: small golden-ratio section (for text) */
+.result-loading-page2-left {
+  flex: 38.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* center text horizontally */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Right side: big golden-ratio section (for chart) */
+.result-loading-page2-right {
+  flex: 61.8;
+  background: #001011;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+.line-chart-background {
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-chart-background svg {
+  max-width: 100%;
+  max-height: 100%;
+  width:auto;
+  height: auto;
+  display: block;
+}
+
+
+/* Line styling */
+.line-chart-path {
+  stroke: #087E8B;
+  stroke-width: 3px;
+  fill: none;
+}
+
+/* Circle styling */
+.line-chart-point {
+  fill: #087E8B;
+  r: 7;
+}
+
+/* Text styling */
+.line-chart-text {
+  font-size: 1rem;
+  fill: #fff;
+  text-anchor: middle;
+}
