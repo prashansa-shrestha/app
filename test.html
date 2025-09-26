@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>D3 Line Chart Animation with Text</title>
+ <script src="https://d3js.org/d3.v7.min.js"></script>
+ <style>
+.line-chart {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.point-text {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  fill: #333;
+  text-anchor: middle;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+ <svg id="chart"></svg>
+ <script>
+const data = [
+ { x: 10, y: 40, text: "Point A" },
+ { x: 20, y: 40, text: "Point B" },
+ { x: 30, y: 40, text: "Point C" },
+ { x: 40, y: 40, text: "Point D" },
+ { x: 50, y: 40, text: "Point E" },
+ { x: 60, y: 40, text: "Point F" },
+];
+
+const width = 500;
+const height = 300;
+const svg = d3.select("#chart")
+ .attr("width", width)
+ .attr("height", height);
+
+// Create scales
+const x = d3.scaleLinear()
+ .domain(d3.extent(data, d => d.x))
+ .range([40, width - 40]);
+
+const y = d3.scaleLinear()
+ .domain([0, d3.max(data, d => d.y)])
+ .range([height - 40, 40]);
+
+// Line generator
+const line = d3.line()
+ .x(d => x(d.x))
+ .y(d => y(d.y));
+
+// Draw path
+const path = svg.append("path")
+ .datum(data)
+ .attr("class", "line-chart")
+ .attr("d", line);
+
+// Add points
+const points = svg.selectAll("circle")
+ .data(data)
+ .enter()
+ .append("circle")
+ .attr("cx", d => x(d.x))
+ .attr("cy", d => y(d.y))
+ .attr("fill", "black");
+
+// Add text labels (only for points 2 to second-last, i.e., indices 1 to data.length-2)
+const textLabels = svg.selectAll(".point-text")
+ .data(data.slice(1, data.length - 1)) // Skip first and last points
+ .enter()
+ .append("text")
+ .attr("class", "point-text")
+ .attr("x", d => x(d.x))
+ .attr("y", (d, i) => {
+   // Alternating pattern: even indices (0, 2, 4...) go above, odd indices (1, 3, 5...) go below
+   const isAbove = i % 2 === 0;
+   return isAbove ? y(d.y) - 15 : y(d.y) + 25;
+ })
+ .text(d => d.text)
+ .attr("opacity", 0); // Start invisible
+
+// Animate line
+const totalLength = path.node().getTotalLength();
+path.attr("stroke-dasharray", `${totalLength} ${totalLength}`)
+ .attr("stroke-dashoffset", totalLength)
+ .transition()
+ .duration(7000)
+ .ease(d3.easeLinear)
+ .attr("stroke-dashoffset", 0);
+
+// Animate points
+const data_size = points.size();
+points.attr("r", 0)
+ .transition()
+ .delay((d, i) => {
+   const distance = (i / (data_size - 1)) * totalLength;
+   const timeFraction = distance / totalLength;
+   return timeFraction * 7000;
+ })
+ .duration(700)
+ .attr("r", 5);
+
+// Animate text labels
+textLabels.transition()
+ .delay((d, i) => {
+   // Adjust index since we're working with sliced data (starting from index 1)
+   const originalIndex = i + 1;
+   const distance = (originalIndex / (data_size - 1)) * totalLength;
+   const timeFraction = distance / totalLength;
+   return timeFraction * 7000;
+ })
+ .duration(700)
+ .attr("opacity", 1);
+</script>
+</body>
+</html>
